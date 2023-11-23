@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="data/audio.js" defer></script>
+    <script src="data/attacks.js" defer></script>
+    <script src="data/monsters.js" defer></script>
+    <script src="data/battleZone.js" defer></script>
+    <script src="data/collisions.js" defer></script>
+    <script src="data/classes.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="batteScene.js" defer></script>
+    <title>Pokemon</title>
+</head>
+
+<body>
+    <div class="main">
+        <div id="overlappingDiv" class="cover"></div>
+
+        <canvas></canvas>
+        <div id="userInterface" class="userCon">
+            <div class="enemy-bar">
+                <h1>Draggle</h1>
+                <div class="enemy-health">
+                    <div class="enemy-health-one"></div>
+                    <div id="enemyHealthBar" class="enemy-health-two"></div>
+                </div>
+            </div>
+            <div class="emby-bar">
+                <h1>Player</h1>
+                <div class="emby-health">
+                    <div class="emby-health-one"></div>
+                    <div id="embyHealthBar" class="emby-health-two"></div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="dialogue" id="dialogueBox">blblblblb</div>
+                <div class="first" id="attacksBox">
+
+                </div>
+                <div class="second" id="attackType">
+                    <h1>Attack Type</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

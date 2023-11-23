@@ -1,0 +1,140 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Press Start 2P", cursive;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(5, 37, 88);
+}
+
+.main {
+	display: inline-block;
+	position: relative;
+}
+
+canvas {
+	background-color: black;
+}
+
+.cover {
+	background-color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.bar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	height: 150px;
+	border-top: 4px black solid;
+	display: flex;
+}
+
+.first {
+	width: 67%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.second {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 33%;
+	border-left: 4px solid black;
+}
+
+.enemy-bar {
+	background-color: white;
+	width: 250px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	border: 3px solid black;
+	padding: 12px;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #ddd;
+}
+
+.second h1 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.enemy-bar h1,
+.emby-bar h1 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.enemy-health,
+.emby-health {
+	position: relative;
+	margin-top: 10px;
+}
+
+.enemy-health-one,
+.emby-health-one {
+	height: 5px;
+	background-color: #ccc;
+}
+
+.enemy-health-two,
+.emby-health-two {
+	height: 5px;
+	background-color: green;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.emby-bar {
+	background-color: white;
+	width: 250px;
+	position: absolute;
+	top: 300px;
+	right: 80px;
+	border: 3px solid black;
+	padding: 12px;
+}
+
+.dialogue {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: white;
+	padding: 12px;
+	display: none;
+	cursor: pointer;
+}
+
+.userCon {
+	display: none;
+}
