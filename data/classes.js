@@ -90,33 +90,32 @@ class Monster extends Sprite {
 	}
 
 	faint() {
-		document.querySelector("#dialogueBox").innerHTML = this.name + " fainted!"
+		document.querySelector("#dialogue").innerHTML = this.name + " fainted!"
 		gsap.to(this.position, {
 			y: this.position.y + 20,
 		})
 		gsap.to(this, {
 			opacity: 0,
 		})
-		audio.battle.stop()
-		audio.victory.play()
 	}
 
 	attack({ attack, recipient, renderedSprites }) {
-		document.querySelector("#dialogueBox").style.display = "block"
-		document.querySelector("#dialogueBox").innerHTML =
+		document.querySelector("#dialogue").style.display = "flex"
+		document.querySelector("#dialogue").innerHTML =
 			this.name + " used " + attack.name
 
-		let healthBar = "#enemyHealthBar"
-		if (this.isEnemy) healthBar = "#embyHealthBar"
+		let healthBar = "#enemy-health-bar"
+		if (this.isEnemy) healthBar = "#emby-health-bar"
 
 		let rotation = 1
 		if (this.isEnemy) rotation = -2
 
 		recipient.health -= attack.damage
+		const tl = gsap.timeline()
+		let movementDistance
 
 		switch (attack.name) {
 			case "Fireball":
-				audio.initFireball.play()
 				const fireballImage = new Image()
 				fireballImage.src = "./images/fireball.png"
 				const fireball = new Sprite({
@@ -139,7 +138,6 @@ class Monster extends Sprite {
 					x: recipient.position.x,
 					y: recipient.position.y,
 					onComplete: () => {
-						audio.fireballHit.play()
 						gsap.to(healthBar, {
 							width: recipient.health + "%",
 						})
@@ -163,9 +161,7 @@ class Monster extends Sprite {
 				break
 
 			case "Tackle":
-				const tl = gsap.timeline()
-
-				let movementDistance = 20
+				movementDistance = 20
 				if (this.isEnemy) movementDistance = -20
 
 				tl.to(this.position, {
@@ -175,7 +171,6 @@ class Monster extends Sprite {
 						x: this.position.x + movementDistance * 2,
 						duration: 0.1,
 						onComplete: () => {
-							audio.tackleHit.play()
 							gsap.to(healthBar, {
 								width: recipient.health - attack.damage + "%",
 							})
@@ -197,6 +192,79 @@ class Monster extends Sprite {
 					})
 					.to(this.position, {
 						x: this.position.x,
+					})
+				break
+
+			case "Critical":
+				movementDistance = 20
+				if (this.isEnemy) movementDistance = -20
+
+				tl.to(this.position, {
+					x: this.position.x - movementDistance,
+					y: this.position.y + movementDistance / 2,
+				})
+					.to(this.position, {
+						x: this.position.x + movementDistance * 2,
+						y: this.position.y - movementDistance,
+						duration: 0.1,
+						onComplete: () => {
+							gsap.to(healthBar, {
+								width: recipient.health - attack.damage + "%",
+							})
+
+							gsap.to(recipient.position, {
+								y: recipient.position.y - 10,
+								yoyo: true,
+								repeat: 5,
+								duration: 0.1,
+							})
+
+							gsap.to(recipient, {
+								opacity: 0,
+								repeat: 5,
+								duration: 0.1,
+								yoyo: true,
+							})
+						},
+					})
+					.to(this.position, {
+						x: this.position.x,
+						y: this.position.y
+					})
+				break
+
+			case "Piercing":
+				movementDistance = 20
+				if (this.isEnemy) movementDistance = -20
+
+				tl.to(this.position, {
+					y: this.position.y - movementDistance * 2,
+				})
+					.to(this.position, {
+						y: this.position.y + movementDistance,
+						duration: 0.1,
+						onComplete: () => {
+							gsap.to(healthBar, {
+								width: recipient.health - attack.damage + "%",
+							})
+
+							gsap.to(recipient.position, {
+								y: recipient.position.y - 30,
+								yoyo: true,
+								repeat: 3,
+								duration: 0.2,
+							})
+
+							gsap.to(recipient, {
+								opacity: 0,
+								repeat: 3,
+								duration: 0.2,
+								yoyo: true,
+							})
+						},
+					})
+					.to(this.position, {
+						y: this.position.y,
 					})
 				break
 		}

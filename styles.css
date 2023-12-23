@@ -1,8 +1,22 @@
-* {
+*,
+*::after,
+*::before {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "Press Start 2P", cursive;
+}
+
+:root {
+	--background: rgb(5, 37, 88);
+	--canvas: rgb(20, 20, 20);
+	--battle-area: rgb(0, 0, 0);
+	--bars: rgb(240, 240, 240);
+	--health: rgb(0, 90, 0);
+	--health-bar: rgb(204, 204, 204);
+	--buttons-hover: rgb(185, 185, 185);
+	--attack-bar: rgb(92, 0, 0);
+	--dialogue: rgb(0, 200, 190);
 }
 
 body {
@@ -11,7 +25,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgb(5, 37, 88);
+	background-color: var(--background);
 }
 
 .main {
@@ -20,69 +34,45 @@ body {
 }
 
 canvas {
-	background-color: black;
+	background-color: var(--canvas);
 }
 
-.cover {
-	background-color: black;
+.battle-area {
+	background-color: var(--battle-area);
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 0; 
 	right: 0;
 	bottom: 0;
 	opacity: 0;
 	pointer-events: none;
 	z-index: 10;
 }
-
-.bar {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: white;
-	height: 150px;
-	border-top: 4px black solid;
-	display: flex;
-}
-
-.first {
-	width: 67%;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-}
-
-.second {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 33%;
-	border-left: 4px solid black;
+ 
+.user-info {
+	display: none;
 }
 
 .enemy-bar {
-	background-color: white;
+	background-color: var(--bars);
 	width: 250px;
 	position: absolute;
 	top: 50px;
 	left: 50px;
 	border: 3px solid black;
+	border-radius: 10px;
 	padding: 12px;
 }
 
-button {
-	border: 0;
-	cursor: pointer;
-	font-size: 16px;
-}
-
-button:hover {
-	background-color: #ddd;
-}
-
-.second h1 {
-	margin: 0;
-	font-size: 16px;
+.emby-bar {
+	background-color: var(--bars);
+	width: 250px;
+	position: absolute;
+	top: 300px;
+	right: 80px;
+	border: 3px solid black;
+	border-radius: 10px;
+	padding: 12px;
 }
 
 .enemy-bar h1,
@@ -100,27 +90,27 @@ button:hover {
 .enemy-health-one,
 .emby-health-one {
 	height: 5px;
-	background-color: #ccc;
+	background-color: var(--health-bar);
 }
 
 .enemy-health-two,
 .emby-health-two {
 	height: 5px;
-	background-color: green;
+	background-color: var(--health);
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 }
 
-.emby-bar {
-	background-color: white;
-	width: 250px;
+.bar {
 	position: absolute;
-	top: 300px;
-	right: 80px;
-	border: 3px solid black;
-	padding: 12px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: var(--bars);
+	height: 140px;
+	display: flex;
 }
 
 .dialogue {
@@ -129,12 +119,45 @@ button:hover {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background-color: white;
-	padding: 12px;
+	background-color: var(--dialogue);
 	display: none;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
 }
 
-.userCon {
-	display: none;
+.attacks-box {
+	background-color: rgb(0, 255, 51);
+	border: 2px dashed black;
+	width: 67%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+	font-size: 16px;
+	border: 2px black solid;
+	border-radius: 8px;
+	margin: 10px;
+	transition: background-color 0.3s, font-size 0.3s;
+}
+
+button:hover {
+	background-color: var(--buttons-hover);
+	font-size: 17px;
+}
+
+.attack-type {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--attack-bar);
+	width: 33%;
+	border: 3px solid black;
+}
+
+.attack-type h1 {
+	font-size: 16px;
 }

@@ -2,7 +2,7 @@ const canvas = document.querySelector("canvas")
 const c = canvas.getContext("2d")
 
 canvas.width = 1024
-canvas.height = 576 // tutaj powinno być 768
+canvas.height = 576
 
 const collisionsMap = []
 for (let i = 0; i < collisions.length; i += 64) {
@@ -48,7 +48,7 @@ battleZoneMap.forEach((row, i) => {
 					},
 				})
 			)
-	})
+	}) 
 })
 
 const image = new Image()
@@ -166,7 +166,7 @@ function animate() {
 					battleZone.position.y + battleZone.height
 				) -
 					Math.max(player.position.y, battleZone.position.y))
-			if (
+			if ( 
 				rectangularCollision({
 					rectangle1: player,
 					rectangle2: battleZone,
@@ -179,24 +179,21 @@ function animate() {
 				// deactive current animation loop
 				window.cancelAnimationFrame(animationId)
 
-				audio.Map.stop()
-				audio.initBattle.play()
-				audio.battle.play()
 				battle.initiated = true
-				gsap.to("#overlappingDiv", {
+				gsap.to("#battle-area", {
 					opacity: 1,
 					repeat: 3,
 					yoyo: true,
 					duration: 0.4,
 					onComplete() {
-						gsap.to("#overlappingDiv", {
+						gsap.to("#battle-area", {
 							opacity: 1,
 							duration: 0.4,
 							onComplete() {
 								// active a new animation loop
 								initBattle()
 								animateBattle()
-								gsap.to("#overlappingDiv", {
+								gsap.to("#battle-area", {
 									opacity: 0,
 									duration: 0.4,
 								})
@@ -227,7 +224,6 @@ function animate() {
 					},
 				})
 			) {
-				console.log("colliding")
 				moving = false
 				break
 			}
@@ -254,7 +250,6 @@ function animate() {
 					},
 				})
 			) {
-				console.log("colliding")
 				moving = false
 				break
 			}
@@ -269,7 +264,7 @@ function animate() {
 		player.animate = true
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i]
-			if (
+			if ( 
 				rectangularCollision({
 					rectangle1: player,
 					rectangle2: {
@@ -281,7 +276,6 @@ function animate() {
 					},
 				})
 			) {
-				console.log("colliding")
 				moving = false
 				break
 			}
@@ -308,7 +302,6 @@ function animate() {
 					},
 				})
 			) {
-				console.log("colliding")
 				moving = false
 				break
 			}
@@ -320,7 +313,7 @@ function animate() {
 			})
 	}
 }
-// animate()
+
 
 let lastKey = ""
 
@@ -362,10 +355,3 @@ window.addEventListener("keyup", e => {
 	}
 })
 
-let clicked = false
-addEventListener("click", () => {
-	if (!clicked) {
-		audio.Map.play()
-	}
-	clicked = true
-})
